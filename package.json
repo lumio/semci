@@ -1,8 +1,11 @@
 {
   "name": "semci",
   "version": "1.0.0",
-  "description": "Git commit and branch helper",
+  "description": "Git helper to create semver commits and name branches accordingly",
   "main": "index.js",
+  "bin": {
+    "semci": "index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
