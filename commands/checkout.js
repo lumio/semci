@@ -3,8 +3,8 @@ const escapeStringRegexp = require( 'escape-string-regexp' );
 const git = require( '../lib/git' );
 const log = require( '../lib/log' );
 
-const selectBranch = async ( branches ) => {
-  if ( branches.length === 1 ) {
+const selectBranch = async ( branches, pattern ) => {
+  if ( branches.length === 1 && branches[ 0 ].name === pattern ) {
     return branches[ 0 ].name;
   }
 
@@ -39,7 +39,7 @@ module.exports = async ( { branch } ) => {
     return 1;
   }
 
-  const selectedBranch = await selectBranch( possibleBranches );
+  const selectedBranch = await selectBranch( possibleBranches, branch );
   if ( !selectedBranch ) {
     return 1;
   }
