@@ -8,11 +8,15 @@ const abbrTypes = {
 };
 
 const getBranchName = ( params ) => {
-  const issue = changeCase.paramCase( params.issue || '' ).toUpperCase();
+  let issue = changeCase.paramCase( params.issue || '' ).toUpperCase();
   const type = abbrTypes[ params.type ] || params.type || defaultType;
   const description = changeCase.paramCase( params.description || '' );
 
-  return `${ type }/${ [ issue, description ].filter( a => !!a ).join( '-' ) }`;
+  if ( issue.substring( 0, 1 ) === '#' ) {
+    issue = issue.substring( 1 );
+  }
+
+  return `${ type }/${ [ issue, description ].filter( Boolean ).join( '-' ) }`;
 };
 
 module.exports = {

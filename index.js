@@ -3,6 +3,13 @@ const package = require( './package.json' );
 const commands = require( './commands' );
 
 const errorHandler = require( './lib/errorHandler' );
+
+process.on( 'unhandledRejection', ( reason, promise ) => {
+  errorHandler( () => {
+    throw reason;
+  } );
+} );
+
 const checkIfVoid = async ( promisedResult ) => {
   const result = await promisedResult;
   let exitCode = 0;
@@ -32,12 +39,14 @@ const main = ( argv ) => {
 
   program
     .command( 'commit <issue|type|message> [type|message] [message]' )
+    .option( '-a, --all', 'Tell the command to automatically stage files that have been modified and deleted, but new files you have not told Git about are not affected.' )
     .description( 'Commit staged files using the branches issue number' )
-    .action( ( arg1, arg2, arg3 ) => {
+    .action( ( arg1, arg2, arg3, cmdOptions ) => {
       const params = {
         issue: arg3 && arg2 && arg1,
         type: arg2 && arg1,
         message: arg3 || arg2 || arg1,
+        all: cmdOptions.all,
       };
 
       checkIfVoid( commands.commit( params ) );
