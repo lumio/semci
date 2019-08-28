@@ -22,6 +22,7 @@ module.exports = {
   },
 
   rename: ( params ) => {
-    throw new Error( 'not implemented yet' );
+    const branchName = getBranchName( params );
+    return git( 'branch', '-m', branchName );
   },
 };
