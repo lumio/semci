@@ -11,6 +11,8 @@
   "dependencies": {
     "change-case": "^3.1.0",
     "commander": "^3.0.0",
-    "kleur": "^3.0.3"
+    "escape-string-regexp": "^2.0.0",
+    "kleur": "^3.0.3",
+    "prompts": "^2.2.1"
   }
 }

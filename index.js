@@ -38,6 +38,13 @@ const main = ( argv ) => {
     } );
 
   program
+    .command( 'checkout [branch|search]' )
+    .description( 'Checks out the given branch name or returns a list of branches' )
+    .action( ( branch ) => {
+      checkIfVoid( commands.checkout( { branch } ) );
+    } );
+
+  program
     .command( 'commit <issue|type|message> [type|message] [message]' )
     .option( '-a, --all', 'Tell the command to automatically stage files that have been modified and deleted, but new files you have not told Git about are not affected.' )
     .description( 'Commit staged files using the branches issue number' )
@@ -58,6 +65,14 @@ const main = ( argv ) => {
     .action( ( remote ) => {
       checkIfVoid( commands.push( { remote } ) );
     } );
+
+  program.on( 'command:*', () => {
+    console.error(
+      'Invalid command: %s\nSee --help for a list of available commands.',
+      program.args.join( ' ' )
+    );
+    process.exit( 1 );
+  } )
 
   program
     .parse( argv );
