@@ -1,0 +1,16 @@
+{
+  "name": "semci",
+  "version": "1.0.0",
+  "description": "Git commit and branch helper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "change-case": "^3.1.0",
+    "commander": "^3.0.0",
+    "kleur": "^3.0.3"
+  }
+}
