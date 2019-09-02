@@ -30,7 +30,7 @@ module.exports = async ( { branch } ) => {
   let possibleBranches = branches;
 
   if ( branch ) {
-    const pattern = new RegExp( escapeStringRegexp( branch ) );
+    const pattern = new RegExp( escapeStringRegexp( branch ), 'i' );
     possibleBranches = branches.filter( item => item.name.match( pattern ) );
   }
 
