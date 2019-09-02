@@ -14,8 +14,16 @@ Usage
 ---
 
 ```bash
-semci --help            # to find available commands
-semci <command> --help  # to find further info about a given command
+semci --help            # View available commands
+semci <command> --help  # View further info about a given command
+```
+
+### Examples
+
+```bash
+semci new feat FEAT-1 "some description"  # Will create a new feature branch
+                                          # called feature/FEAT-1-some-description
+semci checkout feat-1                     # Searches through available branches
 ```
 
 Git configuration
