@@ -1,3 +1,5 @@
+const prompts = require( 'prompts' );
+const kleur = require( 'kleur' );
 const git = require( '../lib/git' );
 const parse = require( '../lib/parse' );
 const log = require( '../lib/log' );
@@ -29,10 +31,24 @@ module.exports = async ( params ) => {
   }
 
   const commitMessage = [
-    `${ parts.type }:`,
+    parts.type && `${ parts.type }:`,
     parts.issue,
     parts.message,
   ].filter( Boolean ).join( ' ' );
+
+  if ( !parts.type ) {
+    const response = await prompts( {
+      type: 'confirm',
+      name: 'confirm',
+      message: 'Your commit message has no type! Do you want to commit it without it?\n'
+        + `The message would be: ${ kleur.reset().yellow( `"${ commitMessage }"` ) }`,
+      initial: true,
+    } );
+
+    if ( !response.confirm ) {
+      return 1;
+    }
+  }
 
   const args = [
     'commit',
