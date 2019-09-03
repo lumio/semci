@@ -47,13 +47,13 @@ const main = ( argv ) => {
     } );
 
   program
-    .command( 'commit <issue|type|message> [type|message] [message]' )
+    .command( 'commit <issue|type|message> [issue|message] [message]' )
     .option( '-a, --all', 'Tell the command to automatically stage files that have been modified and deleted, but new files you have not told Git about are not affected.' )
     .description( 'Commit staged files using the branches issue number' )
     .action( ( arg1, arg2, arg3, cmdOptions ) => {
       const params = {
-        issue: arg3 && arg2 && arg1,
-        type: arg2 && arg1,
+        issue: arg3 ? arg2 : null,
+        type: arg3 || arg2 ? arg1 : null,
         message: arg3 || arg2 || arg1,
         all: cmdOptions.all,
       };
