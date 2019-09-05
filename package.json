@@ -1,6 +1,6 @@
 {
   "name": "semci",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Git helper to create semver commits and name branches accordingly",
   "main": "index.js",
   "bin": {
