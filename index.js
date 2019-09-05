@@ -41,9 +41,10 @@ const main = ( argv ) => {
 
   program
     .command( 'checkout [branch|search]' )
+    .option( '-b, --branch', 'Create branch if it does not exist' )
     .description( 'Checks out the given branch name or returns a list of branches' )
-    .action( ( branch ) => {
-      checkIfVoid( commands.checkout( { branch } ) );
+    .action( ( branch, cmdOptions ) => {
+      checkIfVoid( commands.checkout( { branch, newBranch: cmdOptions.branch } ) );
     } );
 
   program

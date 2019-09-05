@@ -1,3 +1,4 @@
+const kleur = require( 'kleur' );
 const prompts = require( 'prompts' );
 const escapeStringRegexp = require( 'escape-string-regexp' );
 const git = require( '../lib/git' );
@@ -25,9 +26,22 @@ const selectBranch = async ( branches, pattern ) => {
   return branch;
 };
 
-module.exports = async ( { branch } ) => {
+const checkoutNewBranch = async ( branches, newBranch ) => {
+  if ( branches.find( b => b.name === newBranch ) ) {
+    log.error( `A branch with the name ${ kleur.yellow( `'${ newBranch }'` ) } already exists.` );
+    return 1;
+  }
+
+  return git( 'checkout', '-b', newBranch );
+};
+
+module.exports = async ( { branch, newBranch } ) => {
   const branches = await git.getAllBranches();
   let possibleBranches = branches;
+
+  if ( newBranch ) {
+    return checkoutNewBranch( branches, branch );
+  }
 
   if ( branch ) {
     const pattern = new RegExp( escapeStringRegexp( branch ), 'i' );

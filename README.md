@@ -13,6 +13,8 @@ npm install -g git+ssh://<git clone url>
 Usage
 ---
 
+The best way to find all commands is to use the *--help* argument
+
 ```bash
 semci --help            # View available commands
 semci <command> --help  # View further info about a given command
