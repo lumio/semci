@@ -28,7 +28,7 @@ const selectBranch = async ( branches, pattern ) => {
 
 const checkoutNewBranch = async ( branches, newBranch ) => {
   if ( branches.find( b => b.name === newBranch ) ) {
-    log.error( `A branch with the name ${ kleur.yellow( `'${ newBranch }'` ) } already exists.` );
+    log.error( `A branch named ${ kleur.yellow( `'${ newBranch }'` ) } already exists.` );
     return 1;
   }
 
