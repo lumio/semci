@@ -4,6 +4,16 @@ const git = require( '../lib/git' );
 const parse = require( '../lib/parse' );
 const log = require( '../lib/log' );
 
+const sanitizeIssueNum = ( issue ) => {
+  const num = parseInt( issue, 10 );
+
+  if ( num.toString() === issue && issue !== 'NaN' ) {
+    return `#${ issue }`;
+  }
+
+  return issue;
+}
+
 module.exports = async ( params ) => {
   const branchName = await git.getBranchName();
   const parsedBranchName = parse.branchName( branchName );
@@ -27,12 +37,12 @@ module.exports = async ( params ) => {
   const scopedTypeParts = parts.type.split( ' ' );
   if ( scopedTypeParts.length > 1 && parts.type.indexOf( '(' ) === -1 ) {
     const type = scopedTypeParts.splice( 0, 1 ).join( '' );
-    parts.type = `${type}(${ scopedTypeParts.join( ' ' ) })`;
+    parts.type = `${ type }(${ scopedTypeParts.join( ' ' ) })`;
   }
 
   const commitMessage = [
     parts.type && `${ parts.type }:`,
-    parts.issue,
+    sanitizeIssueNum( parts.issue ),
     parts.message,
   ].filter( Boolean ).join( ' ' );
 
