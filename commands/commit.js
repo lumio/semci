@@ -16,7 +16,7 @@ const sanitizeIssueNum = ( issue ) => {
 
 module.exports = async ( params ) => {
   const branchName = await git.getBranchName();
-  const parsedBranchName = parse.branchName( branchName );
+  const parsedBranchName = parse.branchName( branchName, params.ignoreInvalidType );
 
   const parts = {
     issue: params.issue || parsedBranchName.issue,

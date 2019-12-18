@@ -50,6 +50,7 @@ const main = ( argv ) => {
   program
     .command( 'commit <issue|type|message> [issue|message] [message]' )
     .option( '-a, --all', 'Tell the command to automatically stage files that have been modified and deleted, but new files you have not told Git about are not affected.' )
+    .option( '--ignore-invalid-type', 'Allow invalid semver types' )
     .description( 'Commit staged files using the branches issue number' )
     .action( ( arg1, arg2, arg3, cmdOptions ) => {
       const params = {
@@ -57,6 +58,7 @@ const main = ( argv ) => {
         type: arg3 || arg2 ? arg1 : null,
         message: arg3 || arg2 || arg1,
         all: cmdOptions.all,
+        ignoreInvalidType: cmdOptions.ignoreInvalidType,
       };
 
       checkIfVoid( commands.commit( params ) );
