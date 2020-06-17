@@ -14,7 +14,7 @@ module.exports = async ( params ) => {
     message: params.message,
   };
 
-  if ( parsedBranchName.isMaster || parsedBranchName.isDevelop ) {
+  if ( parsedBranchName.isMain || parsedBranchName.isDevelop ) {
     log.warn( `You're on ${ branchName }!` );
   }
   else if ( !parts.issue ) {
