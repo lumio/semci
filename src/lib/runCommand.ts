@@ -1,7 +1,13 @@
-const { spawn } = require( 'child_process' );
-const log = require( './log' );
+import { spawn } from 'child_process';
+import log from './log';
 
-module.exports = ( command, args, skipResult = false, skipOutput = false ) => {
+export interface CommandOutput {
+  stdout: string;
+  stderr: string;
+  exitCode: number;
+}
+
+export default ( command, args, skipResult = false, skipOutput = false ): Promise<number | CommandOutput> => {
   return new Promise( ( resolve ) => {
     if ( !skipOutput ) {
       const printableCommand =

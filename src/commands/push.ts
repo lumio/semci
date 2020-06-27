@@ -1,6 +1,6 @@
-const git = require( '../lib/git' );
+import git from '../lib/git';
 
-module.exports = async ( { remote } ) => {
+export default async ( { remote } ) => {
   const remoteName = remote || 'origin';
   const branch = await git.getBranchName();
 

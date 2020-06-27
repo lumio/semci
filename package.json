@@ -1,13 +1,14 @@
 {
   "name": "semci",
-  "version": "1.0.5",
+  "version": "0.1.0",
   "description": "Git helper to create semver commits and name branches accordingly",
-  "main": "index.js",
+  "main": "bin/index.js",
   "bin": {
-    "semci": "index.js"
+    "semci": "bin/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && cp package.json bin/ && chmod +x bin/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +18,11 @@
     "escape-string-regexp": "2.0.0",
     "kleur": "3.0.3",
     "prompts": "2.3.0"
+  },
+  "devDependencies": {
+    "@types/commander": "2.12.2",
+    "@types/node": "14.0.14",
+    "@types/prompts": "2.0.8",
+    "typescript": "3.9.5"
   }
 }

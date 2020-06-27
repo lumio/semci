@@ -1,8 +1,8 @@
-const prompts = require( 'prompts' );
-const kleur = require( 'kleur' );
-const git = require( '../lib/git' );
-const parse = require( '../lib/parse' );
-const log = require( '../lib/log' );
+import prompts from 'prompts';
+import kleur from 'kleur';
+import git from '../lib/git';
+import parse from '../lib/parse';
+import log from '../lib/log';
 
 const sanitizeIssueNum = ( issue ) => {
   const num = parseInt( issue, 10 );
@@ -14,7 +14,7 @@ const sanitizeIssueNum = ( issue ) => {
   return issue;
 }
 
-module.exports = async ( params ) => {
+export default async ( params ) => {
   const branchName = await git.getBranchName();
   const parsedBranchName = parse.branchName( branchName, params.ignoreInvalidType );
 

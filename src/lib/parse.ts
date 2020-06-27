@@ -69,4 +69,4 @@ const parse = {
   },
 };
 
-module.exports = parse;
+export default parse;

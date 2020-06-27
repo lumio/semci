@@ -1,5 +1,5 @@
-const changeCase = require( 'change-case' );
-const git = require( '../lib/git' );
+import changeCase from 'change-case';
+import git from '../lib/git';
 
 const defaultType = 'feature';
 const abbrTypes = {
@@ -19,7 +19,7 @@ const getBranchName = ( params ) => {
   return `${ type }/${ [ issue, description ].filter( Boolean ).join( '-' ) }`;
 };
 
-module.exports = {
+export default {
   new: ( params ) => {
     const branchName = getBranchName( params );
     return git( 'checkout', '-b', branchName );

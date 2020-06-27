@@ -1,6 +1,6 @@
-const kleur = require( 'kleur' );
+import kleur from 'kleur';
 
-module.exports = ( callback ) => {
+export default ( callback ) => {
   try {
     callback();
   } catch ( error ) {

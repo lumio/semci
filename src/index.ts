@@ -1,12 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --enable-source-maps
 
-const program = require( 'commander' );
-const package = require( './package.json' );
-const commands = require( './commands' );
+import * as commands from './commands';
+import errorHandler from './lib/errorHandler';
+const program = require('commander'); // TODO: fix for ts
+const pkgInfo = require('./package.json');
 
-const errorHandler = require( './lib/errorHandler' );
-
-process.on( 'unhandledRejection', ( reason, promise ) => {
+process.on( 'unhandledRejection', ( reason ) => {
   errorHandler( () => {
     throw reason;
   } );
@@ -24,7 +23,7 @@ const checkIfVoid = async ( promisedResult ) => {
 
 const main = ( argv ) => {
   program
-    .version( package.version );
+    .version( pkgInfo.version );
 
   program
     .command( 'branch <new|rename> <type> <issue|description> [description...]' )
