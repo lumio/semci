@@ -1,9 +1,9 @@
-const runCommand = require( './runCommand' );
+import runCommand, { CommandOutput } from './runCommand';
 
 function git( ...args ) {
   return runCommand( 'git', args, true );
 }
-git.withOutput = ( ...args ) => runCommand( 'git', args, false, true );
+git.withOutput = ( ...args ): Promise<CommandOutput> => runCommand( 'git', args, false, true ) as Promise<CommandOutput>;
 git.getBranchName = async () => {
   const branchResult = await git.withOutput( 'symbolic-ref', '--short', 'HEAD' );
   const branchName = branchResult.stdout.trim();
@@ -58,20 +58,12 @@ git.getAllBranches = async () => {
     } )
     .filter( Boolean )
     .sort( ( a, b ) => {
-      const valA = a.name.toLowerCase();
-      const valB = b.name.toLowerCase();
-
-      if ( valA < valB ) {
-        return -1;
-      }
-      if ( valA > valB ) {
-        return 1;
-      }
-
-      return 0;
+      const valA = a?.name.toLowerCase() || '';
+      const valB = b?.name.toLowerCase() || '';
+      return String(valA).localeCompare(valB, undefined, { sensitivity: 'base', numeric: true })
     } );
 
   return branches;
 };
 
-module.exports = git;
+export default git;

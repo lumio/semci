@@ -1,4 +1,4 @@
-const kleur = require( 'kleur' );
+import kleur from 'kleur';
 
 function log( msg ) {
   console.log( kleur.gray( msg ) );
@@ -6,4 +6,4 @@ function log( msg ) {
 log.warn = ( msg ) => console.log( kleur.yellow( 'Warning! ' ) + msg );
 log.error = ( msg ) => console.error( kleur.red( 'Error! ' ) + msg );
 
-module.exports = log;
+export default log;

@@ -1,8 +1,8 @@
-const kleur = require( 'kleur' );
-const prompts = require( 'prompts' );
-const escapeStringRegexp = require( 'escape-string-regexp' );
-const git = require( '../lib/git' );
-const log = require( '../lib/log' );
+import kleur from 'kleur';
+import prompts from 'prompts';
+import escapeStringRegexp from 'escape-string-regexp';
+import git from '../lib/git';
+import log from '../lib/log';
 
 const selectBranch = async ( branches, pattern ) => {
   if ( branches.length === 1 && branches[ 0 ].name === pattern ) {
@@ -35,7 +35,7 @@ const checkoutNewBranch = async ( branches, newBranch ) => {
   return git( 'checkout', '-b', newBranch );
 };
 
-module.exports = async ( { branch, newBranch } ) => {
+export default async ( { branch, newBranch } ) => {
   const branches = await git.getAllBranches();
   let possibleBranches = branches;
 
@@ -45,7 +45,7 @@ module.exports = async ( { branch, newBranch } ) => {
 
   if ( branch ) {
     const pattern = new RegExp( escapeStringRegexp( branch ), 'i' );
-    possibleBranches = branches.filter( item => item.name.match( pattern ) );
+    possibleBranches = branches.filter( item => item?.name?.match( pattern ) );
   }
 
   if ( !possibleBranches.length ) {
