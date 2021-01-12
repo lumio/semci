@@ -1,15 +1,22 @@
 {
   "name": "semci",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Git helper to create semver commits and name branches accordingly",
+  "main": "bin/index.js",
+  "bin": {
+    "semci": "bin/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "post-build": "ts-node scripts/post-build.ts",
-    "build": "rm -rf bin; tsc && cp package.json bin/ && chmod +x bin/index.js && npm run post-build"
+    "prepare": "npm run build",
+    "build": "rm -rf bin; tsc && cp package.json bin/ && chmod +x bin/index.js"
   },
   "author": "Benjamin Falk <lumio@lumio.at> (https://lumio.at/)",
   "bugs": "https://github.com/lumio/semci/issues",
   "license": "GPL-3.0-only",
+  "files": [
+    "bin/**/*"
+  ],
   "dependencies": {
     "change-case": "3.1.0",
     "commander": "3.0.2",
