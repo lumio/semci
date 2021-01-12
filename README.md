@@ -7,7 +7,7 @@ Install
 ---
 
 ```
-npm install -g git+ssh://<git clone url>
+npm install -g semci
 ```
 
 Usage
