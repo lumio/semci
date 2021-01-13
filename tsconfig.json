@@ -11,7 +11,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "outDir": "./bin/",
+    "outDir": "./build/",
     "strict": true,
     "noImplicitAny": false, /* TODO: set true */
     "alwaysStrict": true,
