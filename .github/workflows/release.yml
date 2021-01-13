@@ -21,7 +21,7 @@ jobs:
       - run: npm run pkg
 
       - name: Create Release
-        id: create-release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,7 +32,7 @@ jobs:
           prerelease: false
 
       - name: Upload bundled macos package
-        id: upload-release-macos-bundle
+        id: upload_release_macos_bundle
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
           asset_name: semci-macos.zip
           asset_content_type: application/zip
       - name: Upload bundled linux package
-        id: upload-release-linux-bundle
+        id: upload_release_linux_bundle
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
