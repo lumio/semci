@@ -19,6 +19,8 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm run pkg
+      - run: npm run compress-linux
+      - run: npm run compress-macos
 
       - name: Create Release
         id: create_release
