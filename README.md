@@ -6,6 +6,9 @@ Git helper to create semver commits and name branches accordingly
 Install
 ---
 
+You have the option to use `npm` to install `semci` globally or you can download
+the latest [release](https://github.com/lumio/semci/releases/)
+
 ```
 npm install -g semci
 ```
