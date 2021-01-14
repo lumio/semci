@@ -55,14 +55,16 @@ jobs:
           asset_content_type: application/zip
 
   publish:
+    name: Publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: '15.x'
           registry-url: 'https://registry.npmjs.org'
+      - run: npm --version
       - run: npm install
-      - run: npm publish
+      - run: npm publish --dry-run --verbose
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
