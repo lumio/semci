@@ -68,6 +68,6 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: ls -l dist
-      - run: npm pack
+      - run: npm publish --dry-run --verbose
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
