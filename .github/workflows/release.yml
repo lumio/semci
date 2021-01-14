@@ -64,6 +64,7 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
+      - run: npm --version
       - run: npm install
       - run: npm run build
       - run: ls -l build
