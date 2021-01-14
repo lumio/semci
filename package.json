@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "npm run build",
-    "build": "rm -rf dist; && tsc && cp package.json dist/ && chmod +x dist/index.js",
+    "build": "rm -rf dist; tsc && cp package.json dist/ && chmod +x dist/index.js",
     "pkg": "pkg dist/index.js --targets=node14-macos-x64,node14-linux-x64 --out-path bin && mv bin/index-macos bin/semci-macos && mv bin/index-linux bin/semci-linux",
     "compress-linux": "zip -j bin/semci-linux.zip bin/semci-linux",
     "compress-macos": "zip -j bin/semci-macos.zip bin/semci-macos"
